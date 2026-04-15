@@ -10,6 +10,9 @@ export const AppRoutes = () => {
 
             {/* Protegido por Role */}
             <Route path="/dashboard/*" element={<DashboardPage />} />
+
+            {/* Pagina no encontrada */}
+            <Route path="*" element={<h1>Página no encontrada</h1>} />
         </Routes>
     )
 }

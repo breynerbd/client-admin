@@ -12,7 +12,6 @@ createRoot(document.getElementById('root')).render(
     <ThemeProvider>
       <BrowserRouter>
         <App />
-        <AuthPage />
       </BrowserRouter>
     </ThemeProvider>
   </StrictMode>,

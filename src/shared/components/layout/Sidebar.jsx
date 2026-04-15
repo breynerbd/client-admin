@@ -6,6 +6,7 @@ export const Sidebar = () => {
         { label: "Torneos" },
         { label: "Usuarios" },
     ];
+
     return (
         <aside className="w-60 bg-white min-h-[calc(100vh-4rem)] p-4 shadow-sm">
             <ul className="space-y-1">
