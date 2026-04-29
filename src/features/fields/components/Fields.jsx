@@ -1,4 +1,27 @@
+import { useState, useEffect } from "react";
+import { useEffect as useToastEffect } from "react";
+
+import { useFieldsStore } from "../../users/store/adminStore";
+import { useUIStore } from "../../auth/store/uiStore";
+
+import { showError } from "../../../shared/utils/toast";
+import { spinner } from "@material-tailwind/react"
+import { FieldModal } from "./FieldModal";
+
 export const Fields = () => {
+
+    const { fields, loading, error, getFields } = useFieldsStore();
+    const { openConfirm } = useUIStore();
+
+    const [openModal, setOpenModal] = useState(false);
+    const [selectField, setSelectField] = useState(null);
+
+    useEffect(() => { }, [getFields]);
+
+    useToastEffect(() => {
+        if (error) showError(error);
+    }, [error]);
+
     return (
         <div className="p-4">
             {/* HEADER */}
@@ -19,54 +42,54 @@ export const Fields = () => {
 
             {/* GRID */}
             <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                {fields.map((field) => {
+                    {/* CARD */ }
+                    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-[1.02]">
 
-                {/* CARD */}
-                <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-[1.02]">
-
-                    {/* IMAGEN */}
-                    <div className="w-full h-52 bg-gray-100 flex items-center justify-center">
-                        <img
-                            src="https://via.placeholder.com/300x200"
-                            alt="Campo"
-                            className="max-h-full max-w-full object-contain rounded-t-xl"
-                        />
-                    </div>
-
-                    {/* CONTENIDO */}
-                    <div className="p-5">
-                        <h2 className="text-xl font-bold text-main-blue">
-                            Nombre del Campo
-                        </h2>
-
-                        {/* BADGES */}
-                        <div className="flex gap-2 mt-2 flex-wrap">
-                            <span className="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700 font-medium">
-                                5 vs 5
-                            </span>
-
-                            <span className="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700 font-medium">
-                                Q100/hora
-                            </span>
+                        {/* IMAGEN */}
+                        <div className="w-full h-52 bg-gray-100 flex items-center justify-center">
+                            <img
+                                src="https://via.placeholder.com/300x200"
+                                alt="Campo"
+                                className="max-h-full max-w-full object-contain rounded-t-xl"
+                            />
                         </div>
 
-                        {/* INFO */}
-                        <p className="text-sm text-gray-400 mt-2 truncate">
-                            ID: 123456
-                        </p>
+                        {/* CONTENIDO */}
+                        <div className="p-5">
+                            <h2 className="text-xl font-bold text-main-blue">
+                                Nombre del Campo
+                            </h2>
 
-                        {/* BOTONES */}
-                        <div className="flex gap-3 mt-5">
-                            <button className="flex-1 py-2 rounded-lg bg-main-blue text-white font-medium hover:opacity-90 transition">
-                                ✏️ Editar
-                            </button>
+                            {/* BADGES */}
+                            <div className="flex gap-2 mt-2 flex-wrap">
+                                <span className="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-700 font-medium">
+                                    5 vs 5
+                                </span>
 
-                            <button className="flex-1 py-2 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition">
-                                🗑️ Eliminar
-                            </button>
+                                <span className="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700 font-medium">
+                                    Q100/hora
+                                </span>
+                            </div>
+
+                            {/* INFO */}
+                            <p className="text-sm text-gray-400 mt-2 truncate">
+                                ID: 123456
+                            </p>
+
+                            {/* BOTONES */}
+                            <div className="flex gap-3 mt-5">
+                                <button className="flex-1 py-2 rounded-lg bg-main-blue text-white font-medium hover:opacity-90 transition">
+                                    ✏️ Editar
+                                </button>
+
+                                <button className="flex-1 py-2 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition">
+                                    🗑️ Eliminar
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                })}
             </div>
         </div>
     );
