@@ -20,7 +20,7 @@ export const LoginForm = ({ onForgot }) => {
     const onSumnit = async (data) => {
         const res = await login(data);
         if (res) {
-            navigate("/dashboard");
+            navigate("/dashboard/fields");
             toast.success("Bienvenido de nuevo 🚀");
         } else {
             toast.error(res.error);

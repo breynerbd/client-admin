@@ -1,30 +1,29 @@
-import { useFieldStore } from "../../users/store/adminStore";
+import { useFieldsStore } from "../../users/store/adminStore.js"
 
-export const useSaveField = ()=> {
-    
-    //Recuperación de funciones para el hook
-    const createFeld = useFieldStore((state)=>state.createField);
-    const updateField = useFieldStore((state)=>state.updateField);
+export const useSaveField = () => {
+    // Recuperacion de funciones para el hook
+    const createField = useFieldsStore((state) => state.createField);
+    const updateField = useFieldsStore((state) => state.updateField);
 
     const saveField = async (data, fieldId = null) => {
-        const formData = new FormData();
 
+        const formData = new FormData();
         formData.append("fieldName", data.fieldName);
         formData.append("fieldType", data.fieldType);
         formData.append("capacity", data.capacity);
         formData.append("pricePerHour", data.pricePerHour);
         formData.append("description", data.description);
 
-        if(data.photo?.length){
-            formData.append("image", data.photo[0]);
+        if (data.photo?.length > 0) {
+            formData.append("photo", data.photo[0]);
         }
 
-        if(fieldId){
+        if (fieldId) {
             await updateField(fieldId, formData);
         } else {
-            await createFeld(formData);
+            await createField(formData);
         }
-    }
 
+    };
     return { saveField };
-} 
+};

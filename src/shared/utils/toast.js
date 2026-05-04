@@ -1,12 +1,12 @@
 import { toast } from "react-hot-toast";
 
 const baseStyle = {
-    borderRadius: "8px",
-    fontWeight: 600,
-    fontFamily: "inherit",
-    fontSize: "1rem",
-    padding: "16px 24px",
-    boxShadown: "0 2px 16px 0 rgba(0,0,0,0,08"
+  borderRadius: "8px",
+  fontWeight: 600,
+  fontFamily: "inherit",
+  fontSize: "1rem",
+  padding: "16px 24px",
+  boxShadown: "0 2px 16px 0 rgba(0,0,0,0,08"
 }
 
 export const showSuccess = (message) =>
@@ -22,7 +22,7 @@ export const showSuccess = (message) =>
       secondary: "#fff",
     },
   });
- 
+
 export const showError = (message) =>
   toast.error(message, {
     style: {
@@ -36,7 +36,7 @@ export const showError = (message) =>
       secondary: "#fff",
     },
   });
- 
+
 export const showInfo = (message) =>
   toast(message, {
     style: {

@@ -7,19 +7,19 @@ import {
   getAllReservations as getAllReservationsRequest,
   confirmReservation as confirmReservationRequest,
 } from "../../../shared/api";
- 
+
 export const useFieldsStore = create((set, get) => ({
   fields: [],
   reservations: [],
   loading: false,
   error: null,
- 
+
   getFields: async () => {
     try {
       set({ loading: true, error: null });
- 
+
       const response = await getFieldsRequest();
- 
+
       set({
         fields: response.data.data,
         loading: false,
@@ -31,13 +31,13 @@ export const useFieldsStore = create((set, get) => ({
       });
     }
   },
- 
+
   createField: async (formData) => {
     try {
       set({ loading: true, error: null });
- 
+
       const response = await createFieldRequest(formData);
- 
+
       set({
         fields: [response.data.data, ...get().fields],
         loading: false,
@@ -50,7 +50,7 @@ export const useFieldsStore = create((set, get) => ({
     }
   },
   // ...rest of logic
- 
+
   getAllReservations: async () => {
     try {
       set({ loading: true, error: null });
@@ -67,7 +67,7 @@ export const useFieldsStore = create((set, get) => ({
       });
     }
   },
- 
+
   confirmReservation: async (id) => {
     try {
       set({ loading: true, error: null });
