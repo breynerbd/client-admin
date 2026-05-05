@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useEffect as useToastEffect } from "react";
+import { showConfirmToast } from "../../auth/components/ConfirmModal.jsx"
 
 import { useFieldsStore } from "../../users/store/adminStore";
 import { useUIStore } from "../../auth/store/uiStore";
@@ -56,7 +57,7 @@ export const Fields = () => {
                         {/* IMAGEN */}
                         <div className="w-full h-52 bg-gray-100 flex items-center justify-center">
                             <img
-                                src={field.photo}
+                                src={field.image}
                                 alt={field.fieldName}
                                 className="max-h-full max-w-full object-contain rounded-t-xl"
                             />
@@ -99,10 +100,13 @@ export const Fields = () => {
                                 <button
                                     className="flex-1 py-2 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition"
                                     onClick={() =>
-                                        openConfirm({
+                                        showConfirmToast({
                                             title: "Eliminar campo",
                                             message: `¿Eliminar ${field.fieldName}?`,
-                                            onConfirm: () => deleteField(field._id),
+                                            onConfirm: () => {
+                                                deleteField(field._id);
+                                                console.log("Eliminado");
+                                            },
                                         })
                                     }
                                 >

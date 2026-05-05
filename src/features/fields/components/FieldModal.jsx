@@ -147,6 +147,7 @@ export const FieldModal = ({ isOpen, onClose, field }) => {
                             <div className="flex flex-col">
                                 <label className="text-sm font-semibold text-gray-700 mb-1">Precio por hora</label>
                                 <input
+                                    placeholder="Q100.00"
                                     type="number"
                                     className="w-full px-3 py-2 rounded-lg border-2 border-gray-300 bg-gray-50 focus:border-blue-500 transition"
                                     {...register("pricePerHour", { required: "Requerido", min: 1 })}
@@ -156,6 +157,7 @@ export const FieldModal = ({ isOpen, onClose, field }) => {
                             <div className="flex flex-col md:col-span-2">
                                 <label className="text-sm font-semibold text-gray-700 mb-1">Descripción</label>
                                 <textarea
+                                    placeholder="¡Describe tu cancha!"
                                     className="w-full px-3 py-2 rounded-lg border-2 border-gray-300 bg-gray-50 focus:border-blue-500 transition"
                                     {...register("description", { required: "La descripción es requerida" })}
                                 />
